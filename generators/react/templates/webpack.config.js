@@ -1,12 +1,21 @@
 var path = require('path');
+var webpack = require("webpack")
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    index:[
+      // 'webpack-dev-server/client?http://localhost:8080/',
+      './src/index.js'
+    ]
   },
   output: {
     path: path.join(__dirname, '/build'),
+    publicPath: "/assets/",
     filename: '[name].js'
+  },
+  devServer:{
+    // hot: true,
+    // inline: true
   },
   module:{
     loaders:[
@@ -23,6 +32,10 @@ module.exports = {
     ]
   },
   externals: {
-    React: 'react'
-  }
+    React: 'react',
+    ReactDom: 'react-dom'
+  },
+  plugins: [
+    // new webpack.HotModuleReplacementPlugin()
+  ]
 };
